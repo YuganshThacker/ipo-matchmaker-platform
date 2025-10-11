@@ -139,7 +139,21 @@
       "investmentDate": "2025-10-10",
       "createdAt": "2025-10-11T03:46:55.115Z",
       "updatedAt": "2025-10-11T03:46:55.115Z"
+    },
+    {
+      "id": "inv_1760197297444_gnwkt188z",
+      "userId": "user_1760108425227",
+      "companyName": "asdfgh",
+      "symbol": "ADSDS",
+      "sector": "Finance",
+      "investmentType": "ipo",
+      "shares": 50,
+      "pricePerShare": 10,
+      "totalAmount": 500,
+      "investmentDate": "2025-10-11",
+      "createdAt": "2025-10-11T15:41:37.444Z",
+      "updatedAt": "2025-10-11T15:41:37.444Z"
     }
   ],
-  "lastUpdated": "2025-10-11T03:46:55.115Z"
+  "lastUpdated": "2025-10-11T15:41:37.444Z"
 }
