@@ -1,0 +1,22 @@
+[
+  {
+    "id": "connection_1760122519055",
+    "fromUserId": "1",
+    "fromUserName": "Demo User",
+    "toUserId": "2",
+    "toUserName": "Rajesh Kumar",
+    "message": "Hi! I would like to connect for IPO partnerships.",
+    "status": "accepted",
+    "createdAt": "2025-10-10T18:55:19.055Z"
+  },
+  {
+    "id": "connection_1760122683084",
+    "fromUserId": "user_1760108337777",
+    "fromUserName": "yugansh",
+    "toUserId": "user_1760108425227",
+    "toUserName": "Kirtan",
+    "message": "Hi Kirtan! I'd like to connect with you for potential IPO partnership opportunities.",
+    "status": "accepted",
+    "createdAt": "2025-10-10T18:58:03.084Z"
+  }
+]
