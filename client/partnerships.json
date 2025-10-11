@@ -1,0 +1,61 @@
+[
+  {
+    "id": "partnership_1760121857691",
+    "name": "TechCorp Investment Pool",
+    "description": "Looking for co-investors for TechCorp Solutions IPO",
+    "targetAmount": 15000,
+    "currentAmount": 7500,
+    "status": "forming",
+    "sector": "Technology",
+    "riskLevel": "medium",
+    "expectedReturns": "15-25%",
+    "createdBy": "1",
+    "createdAt": "2025-10-10T18:44:17.691Z",
+    "ipoName": "TechCorp Solutions",
+    "partnershipType": "investment",
+    "offerAmount": 7500,
+    "isPublic": true,
+    "participants": [
+      {
+        "userId": "1",
+        "userName": "Demo User",
+        "joinedAt": "2025-10-10T18:44:17.691Z",
+        "contribution": 7500,
+        "status": "confirmed"
+      }
+    ]
+  },
+  {
+    "id": "partnership_1760121966934",
+    "name": "greenenergy Partnership",
+    "description": "Investment partnership for greenenergy",
+    "targetAmount": 16000,
+    "currentAmount": 13555,
+    "status": "forming",
+    "sector": "Technology",
+    "riskLevel": "medium",
+    "expectedReturns": "15-25%",
+    "createdBy": "user_1760108337777",
+    "createdAt": "2025-10-10T18:46:06.934Z",
+    "ipoName": "greenenergy",
+    "partnershipType": "investment",
+    "offerAmount": 11111,
+    "isPublic": true,
+    "participants": [
+      {
+        "userId": "user_1760108337777",
+        "userName": "yugansh",
+        "joinedAt": "2025-10-10T18:46:06.934Z",
+        "contribution": 11111,
+        "status": "confirmed"
+      },
+      {
+        "userId": "user_1760108425227",
+        "userName": "Kirtan",
+        "joinedAt": "2025-10-10T18:57:48.318Z",
+        "contribution": 2444,
+        "status": "confirmed"
+      }
+    ]
+  }
+]
