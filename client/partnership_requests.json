@@ -361,5 +361,71 @@
         "completed": false
       }
     ]
+  },
+  {
+    "id": "request_1760199889446",
+    "from": "yugansh",
+    "fromUserId": "user_1760108337777",
+    "to": "Updated Demo User",
+    "toUserId": "1",
+    "partnershipId": "partnership_1760121857691",
+    "type": "join",
+    "ipoName": "TechCorp Solutions",
+    "totalNeeded": 15000,
+    "requestedAmount": 3750,
+    "message": "Hi! I would like to join your \"TechCorp Investment Pool\" partnership. Let's collaborate on this IPO investment!",
+    "status": "pending",
+    "createdAt": "2025-10-11T16:24:49.446Z",
+    "steps": [
+      {
+        "label": "Accepted by creator",
+        "completed": false
+      },
+      {
+        "label": "Provide PAN details",
+        "completed": false
+      },
+      {
+        "label": "Apply for IPO",
+        "completed": false
+      },
+      {
+        "label": "Payment settled",
+        "completed": false
+      }
+    ]
+  },
+  {
+    "id": "request_1760202596741",
+    "from": "kirtan",
+    "fromUserId": "user_1760202564809",
+    "to": "yugansh",
+    "toUserId": "user_1760108337777",
+    "partnershipId": "partnership_1760121966934",
+    "type": "join",
+    "ipoName": "greenenergy",
+    "totalNeeded": 16000,
+    "requestedAmount": 1222,
+    "message": "Hi! I would like to join your \"greenenergy Partnership\" partnership. Let's collaborate on this IPO investment!",
+    "status": "pending",
+    "createdAt": "2025-10-11T17:09:56.741Z",
+    "steps": [
+      {
+        "label": "Accepted by creator",
+        "completed": false
+      },
+      {
+        "label": "Provide PAN details",
+        "completed": false
+      },
+      {
+        "label": "Apply for IPO",
+        "completed": false
+      },
+      {
+        "label": "Payment settled",
+        "completed": false
+      }
+    ]
   }
 ]

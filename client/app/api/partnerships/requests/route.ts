@@ -163,6 +163,47 @@ export async function POST(request: NextRequest) {
     requests.push(newRequest)
     saveRequests(requests)
 
+    // Send email notifications
+    try {
+      // Send notification to request sender
+      await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002'}/api/notifications`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'partnership_request_sent',
+          to: user.email,
+          data: {
+            fromUserName: user.name,
+            toUserName: creatorUser.name,
+            ipoName: partnership.ipoName,
+            requestedAmount: newRequest.requestedAmount,
+            type: newRequest.type
+          }
+        })
+      })
+
+      // Send notification to partnership creator
+      await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002'}/api/notifications`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'partnership_request_received',
+          to: creatorUser.email,
+          data: {
+            fromUserName: user.name,
+            toUserName: creatorUser.name,
+            ipoName: partnership.ipoName,
+            requestedAmount: newRequest.requestedAmount,
+            type: newRequest.type,
+            message: newRequest.message
+          }
+        })
+      })
+    } catch (emailError) {
+      console.error('Failed to send email notifications:', emailError)
+      // Don't fail the request creation if email fails
+    }
+
     return NextResponse.json({ request: newRequest })
   } catch (error) {
     console.error('Error creating request:', error)
@@ -204,6 +245,51 @@ export async function PUT(request: NextRequest) {
 
     if (status) {
       requests[requestIndex].status = status
+      
+      // Send email notifications for status updates
+      try {
+        // Get user data for email
+        const usersFilePath = path.join(process.cwd(), 'temp_users.json')
+        const usersData = fs.readFileSync(usersFilePath, 'utf8')
+        const users = JSON.parse(usersData)
+        const fromUser = users.find((u: any) => u.id === partnershipRequest.fromUserId)
+        
+        if (fromUser) {
+          if (status === "accepted") {
+            await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002'}/api/notifications`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'partnership_request_accepted',
+                to: fromUser.email,
+                data: {
+                  fromUserName: fromUser.name,
+                  acceptedBy: user.name,
+                  ipoName: partnershipRequest.ipoName,
+                  amount: partnershipRequest.requestedAmount,
+                  type: partnershipRequest.type
+                }
+              })
+            })
+          } else if (status === "declined") {
+            await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002'}/api/notifications`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                type: 'partnership_request_declined',
+                to: fromUser.email,
+                data: {
+                  fromUserName: fromUser.name,
+                  ipoName: partnershipRequest.ipoName,
+                  reason: 'Request was declined'
+                }
+              })
+            })
+          }
+        }
+      } catch (emailError) {
+        console.error('Failed to send status update email notifications:', emailError)
+      }
       
       // If accepted, update the partnership with new participant
       if (status === "accepted") {

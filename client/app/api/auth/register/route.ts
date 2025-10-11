@@ -106,6 +106,23 @@ export async function POST(request: NextRequest) {
     users.push(newUser)
     saveUsers(users)
 
+    // Send welcome email notification
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002'}/api/notifications`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'welcome',
+          to: newUser.email,
+          data: {
+            userName: newUser.name
+          }
+        })
+      })
+    } catch (emailError) {
+      console.error('Failed to send welcome email notification:', emailError)
+    }
+
     // Create token
     const token = `temp_token_${newUser.id}_${Date.now()}`
 

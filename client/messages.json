@@ -111,8 +111,21 @@
           "user_1760108425227",
           "user_1760108337777"
         ]
+      },
+      {
+        "id": "message_1760196070321_n0vp2lsgg",
+        "connectionId": "connection_1760122683084",
+        "fromUserId": "user_1760108337777",
+        "fromUserName": "yugansh",
+        "toUserId": "user_1760108425227",
+        "toUserName": "Kirtan",
+        "content": "hi kirtan",
+        "timestamp": "2025-10-11T15:21:10.321Z",
+        "readBy": [
+          "user_1760108337777"
+        ]
       }
     ],
-    "lastActivity": "2025-10-10T22:28:55.441Z"
+    "lastActivity": "2025-10-11T15:21:10.321Z"
   }
 ]
