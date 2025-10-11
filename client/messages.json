@@ -111,8 +111,34 @@
           "user_1760108425227",
           "user_1760108337777"
         ]
+      },
+      {
+        "id": "message_1760197125170_5qmewqtmo",
+        "connectionId": "connection_1760122683084",
+        "fromUserId": "user_1760108425227",
+        "fromUserName": "Kirtan",
+        "toUserId": "user_1760108337777",
+        "toUserName": "yugansh",
+        "content": "hii",
+        "timestamp": "2025-10-11T15:38:45.170Z",
+        "readBy": [
+          "user_1760108425227"
+        ]
+      },
+      {
+        "id": "message_1760197225861_ymbymzu9o",
+        "connectionId": "connection_1760122683084",
+        "fromUserId": "user_1760108425227",
+        "fromUserName": "Kirtan",
+        "toUserId": "user_1760108337777",
+        "toUserName": "yugansh",
+        "content": "hello",
+        "timestamp": "2025-10-11T15:40:25.861Z",
+        "readBy": [
+          "user_1760108425227"
+        ]
       }
     ],
-    "lastActivity": "2025-10-10T22:28:55.441Z"
+    "lastActivity": "2025-10-11T15:40:25.861Z"
   }
 ]

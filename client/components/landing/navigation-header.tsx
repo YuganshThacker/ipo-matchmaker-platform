@@ -27,6 +27,15 @@ export function NavigationHeader() {
     { name: "Contact", href: "#contact" },
   ]
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault()
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" })
+      setIsMobileMenuOpen(false)
+    }
+  }
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -53,15 +62,16 @@ export function NavigationHeader() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-blue-500 ${
+                onClick={(e) => handleNavClick(e, item.href)}
+                className={`text-sm font-medium transition-colors hover:text-blue-500 cursor-pointer ${
                   isScrolled ? "text-slate-600 dark:text-slate-300" : "text-slate-300 hover:text-white"
                 }`}
               >
                 {item.name}
-              </Link>
+              </a>
             ))}
           </nav>
 
@@ -110,14 +120,14 @@ export function NavigationHeader() {
           >
             <nav className="flex flex-col space-y-4">
               {navItems.map((item) => (
-                <Link
+                <a
                   key={item.name}
                   href={item.href}
-                  className="text-slate-600 dark:text-slate-300 hover:text-blue-500 px-4 py-2"
-                  onClick={() => setIsMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className="text-slate-600 dark:text-slate-300 hover:text-blue-500 px-4 py-2 cursor-pointer"
                 >
                   {item.name}
-                </Link>
+                </a>
               ))}
               <div className="flex flex-col space-y-2 px-4 pt-4 border-t border-slate-200 dark:border-slate-700">
                 {user ? (

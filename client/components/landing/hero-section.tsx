@@ -151,7 +151,7 @@ export function HeroSection() {
                 whileHover={{ y: -10, scale: 1.05 }}
                 className="group"
               >
-                <Card className="glass p-6 text-center hover:shadow-2xl transition-all duration-300 border-slate-700">
+                <Card className="glass p-6 text-center hover:shadow-2xl transition-all duration-300 border-slate-700 h-full flex flex-col">
                   <div
                     className={`w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-r ${card.color} p-4 group-hover:scale-110 transition-transform duration-300`}
                   >
