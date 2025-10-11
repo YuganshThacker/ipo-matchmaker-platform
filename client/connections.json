@@ -18,5 +18,25 @@
     "message": "Hi Kirtan! I'd like to connect with you for potential IPO partnership opportunities.",
     "status": "accepted",
     "createdAt": "2025-10-10T18:58:03.084Z"
+  },
+  {
+    "id": "connection_1760202804337",
+    "fromUserId": "user_1760202564809",
+    "fromUserName": "kirtan",
+    "toUserId": "user_1760108337777",
+    "toUserName": "yugansh",
+    "message": "Hi yugansh! I'd like to connect with you for potential IPO partnership opportunities.",
+    "status": "pending",
+    "createdAt": "2025-10-11T17:13:24.337Z"
+  },
+  {
+    "id": "connection_1760202813976",
+    "fromUserId": "user_1760202564809",
+    "fromUserName": "kirtan",
+    "toUserId": "user_1760108425227",
+    "toUserName": "Kirtan",
+    "message": "Hi Kirtan! I'd like to connect with you for potential IPO partnership opportunities.",
+    "status": "pending",
+    "createdAt": "2025-10-11T17:13:33.976Z"
   }
 ]

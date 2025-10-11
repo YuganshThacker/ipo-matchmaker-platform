@@ -87,5 +87,15 @@
     "trustScore": 50,
     "isVerified": false,
     "avatar": null
+  },
+  {
+    "id": "user_1760202564809",
+    "email": "ugrejakirtan0@gmail.com",
+    "password": "qwerty",
+    "name": "kirtan",
+    "panNumber": null,
+    "trustScore": 50,
+    "isVerified": false,
+    "avatar": null
   }
 ]

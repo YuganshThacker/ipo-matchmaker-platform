@@ -135,6 +135,27 @@ export async function POST(request: NextRequest) {
     partnerships.push(newPartnership)
     savePartnerships(partnerships)
 
+    // Send email notification for partnership creation
+    try {
+      await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3002'}/api/notifications`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'partnership_created',
+          to: user.email,
+          data: {
+            creatorName: user.name,
+            partnershipName: newPartnership.name,
+            ipoName: newPartnership.ipoName,
+            targetAmount: newPartnership.targetAmount,
+            type: newPartnership.partnershipType
+          }
+        })
+      })
+    } catch (emailError) {
+      console.error('Failed to send partnership creation email notification:', emailError)
+    }
+
     return NextResponse.json({ partnership: newPartnership })
   } catch (error) {
     console.error('Error creating partnership:', error)

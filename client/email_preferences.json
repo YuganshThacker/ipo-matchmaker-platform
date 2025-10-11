@@ -1,0 +1,18 @@
+[
+  {
+    "userId": "user_1760108337777",
+    "email": "yuganshvthacker@gmail.com",
+    "notifications": {
+      "partnershipRequests": true,
+      "partnershipUpdates": true,
+      "ipoAlerts": true,
+      "marketingEmails": true,
+      "securityAlerts": true
+    },
+    "frequency": "immediate",
+    "categories": [],
+    "unsubscribeToken": "unsub_1760199944122_g65dqsqcd",
+    "createdAt": "2025-10-11T16:25:44.122Z",
+    "updatedAt": "2025-10-11T16:26:21.030Z"
+  }
+]

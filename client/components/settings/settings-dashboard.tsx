@@ -11,8 +11,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import { User, Shield, Bell, CreditCard, Smartphone, Eye, EyeOff, Upload, Trash2, AlertTriangle } from "lucide-react"
+import { User, Shield, Bell, CreditCard, Smartphone, Eye, EyeOff, Upload, Trash2, AlertTriangle, Mail } from "lucide-react"
 import { useAuth } from "@/contexts/auth-context"
+import { EmailPreferencesSettings } from "./email-preferences"
+import { NotificationStatusDashboard } from "./notification-status"
 
 export function SettingsDashboard() {
   const { user } = useAuth()
@@ -27,10 +29,11 @@ export function SettingsDashboard() {
   return (
     <div className="space-y-6">
       <Tabs defaultValue="profile" className="w-full">
-        <TabsList className="grid w-full grid-cols-5">
+        <TabsList className="grid w-full grid-cols-6">
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="security">Security</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
+          <TabsTrigger value="email">Email</TabsTrigger>
           <TabsTrigger value="preferences">Preferences</TabsTrigger>
           <TabsTrigger value="billing">Billing</TabsTrigger>
         </TabsList>
@@ -342,6 +345,10 @@ export function SettingsDashboard() {
               </div>
             </CardContent>
           </Card>
+        </TabsContent>
+
+        <TabsContent value="email" className="space-y-6">
+          <EmailPreferencesSettings />
         </TabsContent>
 
         <TabsContent value="preferences" className="space-y-6">
