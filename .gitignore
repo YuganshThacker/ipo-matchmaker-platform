@@ -1,10 +1,47 @@
-# env files: keep real credentials out of git (see client/.env.example)
+# Secrets and local environment files
 .env*
 !.env.example
+!**/.env.example
 
-# dependencies
+# Dependencies and generated build output
 node_modules/
+**/node_modules/
+.next/
+**/.next/
+out/
+build/
+dist/
+.turbo/
 
-# local runtime data written by the demo API routes
-temp_users.json
-email_preferences.json
+# Logs and local OS/editor artifacts
+*.log
+npm-debug.log*
+yarn-debug.log*
+.pnpm-debug.log*
+.DS_Store
+.vscode/
+.idea/
+
+# Local demo/runtime data (may contain passwords or personal information)
+**/temp_users.json
+**/email_preferences.json
+**/connections.json
+**/messages.json
+**/partnerships.json
+**/partnership_requests.json
+**/investments.json
+**/ipo_alerts.json
+**/alert_subscriptions.json
+
+# Python environments and generated artifacts
+**/ml_env/
+**/.venv/
+**/venv/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# TypeScript generated files
+*.tsbuildinfo
+next-env.d.ts
