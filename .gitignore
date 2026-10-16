@@ -1,0 +1,10 @@
+# env files: keep real credentials out of git (see client/.env.example)
+.env*
+!.env.example
+
+# dependencies
+node_modules/
+
+# local runtime data written by the demo API routes
+temp_users.json
+email_preferences.json

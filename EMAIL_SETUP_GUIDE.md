@@ -75,11 +75,17 @@ Create `.env.local` in your client directory:
 cp .env.example .env.local
 ```
 
-Edit `.env.local` with your email service credentials.
+Edit `.env.local` with your email service credentials. Never commit `.env.local`.
 
 ### 3. Test Email Service
 
-Visit: http://localhost:3002/api/notifications?type=welcome&to=your-email@domain.com
+Check the SMTP login without starting the app (prints no credentials):
+
+```bash
+cd client && node test-smtp.js
+```
+
+Or visit: http://localhost:3002/api/notifications?type=welcome&to=your-email@domain.com
 
 This will send a test welcome email to verify the setup.
 

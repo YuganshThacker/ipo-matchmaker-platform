@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     // Check if email notifications are disabled in development
     if (process.env.EMAIL_DISABLED === 'true') {
-      console.log(`[EMAIL DISABLED] Would send ${type} notification to ${to}:`, data)
+      console.log(`[EMAIL DISABLED] Would send ${type} notification`)
       return NextResponse.json({ 
         success: true, 
         message: 'Email notifications disabled in development mode',

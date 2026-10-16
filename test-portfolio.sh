@@ -1,13 +1,17 @@
 #!/bin/bash
 
-echo "🔧 Testing Portfolio Management System"
-echo "=====================================
+# Credentials come from the environment; defaults are the public demo account
+TEST_EMAIL="${TEST_EMAIL:-demo@ipoplatform.com}"
+TEST_PASSWORD="${TEST_PASSWORD:-demo123}"
 
-# Test 1: Login with yuganshvthacker@gmail.com
+echo "🔧 Testing Portfolio Management System"
+echo "====================================="
+
+# Test 1: Login
 echo "Testing login..."
 LOGIN_RESPONSE=$(curl -s -X POST "http://localhost:3000/api/auth/login" \
   -H "Content-Type: application/json" \
-  -d '{"email":"yuganshvthacker@gmail.com","password":"qwerty"}')
+  -d "{\"email\":\"$TEST_EMAIL\",\"password\":\"$TEST_PASSWORD\"}")
 
 echo "Login Response: $LOGIN_RESPONSE"
 
@@ -55,6 +59,4 @@ fi
 
 echo ""
 echo "🎉 All tests completed!"
-echo "Now you can login at http://localhost:3000 with:"
-echo "Email: yuganshvthacker@gmail.com"
-echo "Password: qwerty"
+echo "Now you can login at http://localhost:3000 as $TEST_EMAIL"

@@ -10,14 +10,8 @@ TEST_NAME="Auth Test User"
 echo "🔧 Testing IPO Platform Authentication Flow..."
 echo "================================================"
 
-# 1. Test Debug Endpoint
-echo "1. Testing debug endpoint..."
-DEBUG_RESPONSE=$(curl -s "$BASE_URL/api/auth/debug")
-echo "   Debug response: $DEBUG_RESPONSE"
-echo
-
-# 2. Test Registration
-echo "2. Testing user registration..."
+# 1. Test Registration
+echo "1. Testing user registration..."
 REGISTER_RESPONSE=$(curl -s -X POST "$BASE_URL/api/auth/register" \
   -H "Content-Type: application/json" \
   -d "{\"email\": \"$TEST_EMAIL\", \"password\": \"$TEST_PASSWORD\", \"name\": \"$TEST_NAME\"}")
@@ -29,8 +23,8 @@ REGISTER_TOKEN=$(echo "$REGISTER_RESPONSE" | grep -o '"token":"[^"]*"' | cut -d'
 echo "   Registration token: $REGISTER_TOKEN"
 echo
 
-# 3. Test Session Validation with Registration Token
-echo "3. Testing session validation with registration token..."
+# 2. Test Session Validation with Registration Token
+echo "2. Testing session validation with registration token..."
 if [ -n "$REGISTER_TOKEN" ]; then
     SESSION_RESPONSE=$(curl -s -H "Authorization: Bearer $REGISTER_TOKEN" "$BASE_URL/api/auth/me")
     echo "   Session response: $SESSION_RESPONSE"
@@ -39,8 +33,8 @@ else
 fi
 echo
 
-# 4. Test Login with Same Credentials
-echo "4. Testing login with same credentials..."
+# 3. Test Login with Same Credentials
+echo "3. Testing login with same credentials..."
 LOGIN_RESPONSE=$(curl -s -X POST "$BASE_URL/api/auth/login" \
   -H "Content-Type: application/json" \
   -d "{\"email\": \"$TEST_EMAIL\", \"password\": \"$TEST_PASSWORD\"}")
@@ -52,8 +46,8 @@ LOGIN_TOKEN=$(echo "$LOGIN_RESPONSE" | grep -o '"token":"[^"]*"' | cut -d'"' -f4
 echo "   Login token: $LOGIN_TOKEN"
 echo
 
-# 5. Test Session Validation with Login Token
-echo "5. Testing session validation with login token..."
+# 4. Test Session Validation with Login Token
+echo "4. Testing session validation with login token..."
 if [ -n "$LOGIN_TOKEN" ]; then
     SESSION2_RESPONSE=$(curl -s -H "Authorization: Bearer $LOGIN_TOKEN" "$BASE_URL/api/auth/me")
     echo "   Session response: $SESSION2_RESPONSE"
@@ -61,11 +55,6 @@ else
     echo "   ❌ No login token received!"
 fi
 echo
-
-# 6. Final Debug Check
-echo "6. Final debug check..."
-FINAL_DEBUG_RESPONSE=$(curl -s "$BASE_URL/api/auth/debug")
-echo "   Final debug response: $FINAL_DEBUG_RESPONSE"
 
 echo
 echo "✅ Authentication test completed!"

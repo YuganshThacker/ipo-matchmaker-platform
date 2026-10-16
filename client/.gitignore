@@ -18,6 +18,7 @@ yarn-error.log*
 
 # env files
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -25,3 +26,14 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local runtime data (demo file-based storage; holds user accounts and messages)
+/temp_users.json
+/email_preferences.json
+/connections.json
+/messages.json
+/partnerships.json
+/partnership_requests.json
+/investments.json
+/ipo_alerts.json
+/alert_subscriptions.json

@@ -76,16 +76,17 @@ export class EmailService {
     try {
       // Debug logging
       console.log('📧 Attempting to send email...')
+      // Never log the SMTP username, password or recipient addresses
       console.log('Config:', {
         host: this.config.smtp.host,
         port: this.config.smtp.port,
         secure: this.config.smtp.secure,
-        user: this.config.smtp.auth.user,
+        hasUser: !!this.config.smtp.auth.user,
         hasPassword: !!this.config.smtp.auth.pass
       })
-      
+
       const emailData = {
-        from: process.env.FROM_EMAIL || 'IPO Matchmaker <fintogether.team@gmail.com>',
+        from: process.env.FROM_EMAIL || `IPO Matchmaker <${this.config.smtp.auth.user}>`,
         to: Array.isArray(to) ? to.join(', ') : to,
         subject,
         html: html,
@@ -93,8 +94,7 @@ export class EmailService {
       }
 
       console.log('Email data:', {
-        from: emailData.from,
-        to: emailData.to,
+        recipients: Array.isArray(to) ? to.length : 1,
         subject: emailData.subject
       })
 
@@ -225,7 +225,7 @@ export async function sendNotificationEmail(
 
     return result
   } catch (error) {
-    console.error(`Failed to send ${type} notification to ${to}:`, error)
+    console.error(`Failed to send ${type} notification:`, error)
     return {
       success: false,
       error: error instanceof Error ? error.message : 'Unknown error'

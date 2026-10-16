@@ -19,6 +19,7 @@ yarn-error.log*
 
 # env files
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -30,3 +31,5 @@ next-env.d.ts
 node_modules/
 .env
 
+# local runtime data (demo file-based storage; holds user accounts)
+/temp_users.json

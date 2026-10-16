@@ -204,7 +204,7 @@ async function sendIPOAlerts(alert: IPOAlert) {
           })
         })
       } catch (emailError) {
-        console.error(`Failed to send IPO alert to ${subscription.email}:`, emailError)
+        console.error(`Failed to send IPO alert to user ${subscription.userId}:`, emailError)
       }
     }
 
