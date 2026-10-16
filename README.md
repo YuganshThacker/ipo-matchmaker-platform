@@ -1,104 +1,105 @@
-# IPO
-IPO Matchmaking Platform
+# IPO Matchmaker
 
-IPO Matchmaking Platform is a web application designed to connect investors with PAN holders for IPO applications. The platform simplifies the process of forming investment partnerships, builds trust, and provides data-driven insights to improve the chances of successful IPO participation.
+An experimental web platform for exploring IPO discovery, investor-partnership workflows, portfolio views, and model-assisted listing-price predictions.
 
-Features
-1. Investment Partnerships
+> **Project status: prototype.** This repository is useful for studying a full-stack product and ML integration, but it is not a live investment service. The IPO API currently returns fixture data, the listing-prediction models have not been independently validated, and the demo authentication uses file-backed local storage. Do not use it for investment decisions, real identity data, or production authentication.
 
-PAN Holder Partnership: PAN holders can add their details and IPO requirements. Investors can contribute funds to PAN holders, enabling them to apply for IPOs.
+## What it demonstrates
 
-Investor-to-Investor or Multi-Party Partnership: Multiple investors can pool funds to apply for IPOs without relying on a PAN holder.
+- **IPO discovery UI** — browse sample IPO records and inspect listing details.
+- **Portfolio and analytics views** — dashboard components for holdings, performance, allocation, and prediction results.
+- **Partnership workflows** — demo flows for requests, collaboration, and messages.
+- **Email notifications** — Nodemailer-based notifications configured through environment variables.
+- **ML integration** — Next.js API routes invoke a Python prediction script using saved model artifacts.
+- **Reusable UI** — Next.js App Router, TypeScript, Tailwind CSS, and component-based UI.
 
-Successful partnerships are recorded in user accounts, building trust scores and improving credibility for future collaborations.
+## Architecture
 
-2. PAN Account Management
+```mermaid
+flowchart TD
+    U[Browser] --> C[Next.js app: client/]
+    C --> API[Next.js API routes]
+    API --> DEMO[Local JSON demo storage]
+    API --> MAIL[SMTP / Nodemailer]
+    API --> ML[Python prediction process]
+    ML --> MODELS[Saved scikit-learn model artifacts]
+```
 
-Users can add, view, and manage their PAN details.
+| Path | Purpose |
+|---|---|
+| `client/app/` | Main Next.js App Router pages and API routes |
+| `client/components/` | Dashboard, IPO, portfolio, partnership, and UI components |
+| `client/lib/` | Email, API, notification, and application helpers |
+| `client/.env.example` | Placeholder-only environment template |
+| `server/src/ml/` | Python IPO prediction implementation |
+| `server/model/` | Serialized model and imputer artifacts |
+| `ML_PREDICTION_SYSTEM.md` | ML integration notes and known constraints |
 
-Investors can browse PAN holders for specific IPOs.
+**Architecture note:** `server/` currently contains a parallel Next.js application as well as the Python ML assets. The duplication is legacy architecture that should be consolidated before treating this as a production service. The client-side prediction route expects the Python environment and model files under `server/`.
 
-PAN holders can also participate in other partnerships using their available funds.
+## Run locally
 
-3. IPO Dashboard
+### Requirements
 
-Displays upcoming IPOs with essential details:
+- Node.js 20 or newer
+- npm
+- Python 3 (only needed for the prediction endpoint)
 
-IPO name, listing date, subscription status.
+### Start the main app
 
-Company information and opening/closing dates.
+```bash
+cd client
+cp .env.example .env.local
+npm ci
+npm run dev
+```
 
-Clean and user-friendly interface for easy navigation.
+Open [http://localhost:3000](http://localhost:3000).
 
-4. Premium Features (ML-Based)
+For UI-only development, set `EMAIL_DISABLED=true` in `client/.env.local` so testing the app does not send email. Keep real credentials in the untracked local environment file or deployment secret manager—never in source code.
 
-Opening Price Calculator: Predicts potential IPO opening prices using historical data and trends.
+### Enable the Python prediction path
 
-Allotment Chances Calculator: Estimates the probability of IPO allotment based on subscription ratios and participation trends.
+From the repository root:
 
-Machine Learning models continuously learn from new IPO data to improve predictions and insights.
+```bash
+cd server
+python3 -m venv ml_env
+source ml_env/bin/activate
+pip install -r requirements.txt
+```
 
-5. Trust & Transparency
+Confirm the expected files exist before using the prediction endpoint:
 
-All successful partnerships are logged and displayed in user profiles.
+- `server/src/ml/ipo_predictor.py`
+- `server/model/imputer.pkl`
+- `server/model/model_lg.pkl`
+- `server/model/model_lp.pkl`
 
-Users can see the history of their collaborations and verify partner reliability.
+The prediction route depends on this local Python environment. It will not work in a fresh Node-only setup until the Python dependencies and artifacts are available.
 
-Trust scores incentivize ethical behavior and consistent participation.
+## Development checks
 
-How Partnerships Work
-1. PAN Holder Partnership
+The repository includes manual smoke-test scripts, including `test-ml-prediction.sh` and `test-email-system.sh`. Run them only after configuring the relevant local services and environment variables.
 
-PAN holder registers and adds IPO requirements.
+Before contributing, inspect the resulting diff and run the checks relevant to your changes. Automated CI and a clean, reproducible end-to-end test suite still need to be established; no passing build is claimed by this README.
 
-Investors browse and contribute funds to meet the required IPO amount.
+## Security and data boundaries
 
-Funds are pooled, and IPO application is executed.
+- `client/.env.local` is local-only; use `client/.env.example` as a template.
+- Runtime JSON stores are development/demo persistence, not a production database.
+- Demo authentication must not be exposed to the public internet or used with real passwords, PANs, financial information, or personal data.
+- Use a secret manager for deployment credentials and rotate any credential that may have been exposed.
+- Predictions are experimental outputs, not financial advice; sample IPO records and model outputs may be stale or inaccurate.
 
-Successful partnership is recorded in both PAN holder and investor accounts for trust-building.
+## Current engineering priorities
 
-2. Investor-to-Investor or Multi-Party Partnership
+1. Replace file-backed demo authentication with a secure, persistent identity system and password hashing.
+2. Replace sample IPO records with a documented, validated data source.
+3. Harden the Python process boundary and validate model inputs.
+4. Consolidate the duplicated Next.js application structure.
+5. Add CI for reproducible installation, lint/type checks, tests, and build verification.
 
-Investors register and specify IPOs of interest.
+## License
 
-One investor creates a partnership pool, others join and contribute funds.
-
-Total funds are aggregated to meet IPO application requirements.
-
-IPO application is executed, and success is logged for all participants.
-
-Key Notes for Both Partnerships
-
-Each partnership is linked to a specific IPO.
-
-Trust scores increase after successful collaboration.
-
-Platform ensures fund security and transparency.
-
-How the Platform Works
-
-User Registration & Login
-
-Users register using their PAN number.
-
-PAN verification ensures authenticity.
-
-Exploring IPOs
-
-Browse upcoming IPOs with subscription status and listing dates.
-
-Forming Partnerships
-
-Join or create partnerships for specific IPOs.
-
-Pool funds for IPO applications.
-
-Premium Predictions
-
-Calculate expected IPO opening price and allotment chances using ML models.
-
-Trust Mechanism
-
-Successful partnerships increase credibility.
-
-History and trust score visible to other participants.
+No license file is currently provided. Do not assume that this repository grants permission to reuse or redistribute the code.
